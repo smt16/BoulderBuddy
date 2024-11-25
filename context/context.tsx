@@ -1,15 +1,19 @@
 import { useContext, createContext, type PropsWithChildren } from 'react';
 import { useStorageState } from './use-storage-state';
-import { fireAuthSignIn } from '@/firebase/firebase.auth';
+// import { ReactNativeFirebase } from '@react-native-firebase/app';
+import { FirebaseApp } from 'firebase/app';
+import getFireApp from '@/firebase/firebase.app';
 
 const AuthContext = createContext<{
-  signIn: (email: string, password: string) => Promise<void>;
-  signOut: () => void;
-  session?: string | null;
-  isLoading: boolean;
+  storeToken: (accessToken: string) => void,
+  clearToken: () => void,
+  fireBaseApp: FirebaseApp
+  session?: string | null,
+  isLoading: boolean,
 }>({
-  signIn: () => null,
-  signOut: () => null,
+  storeToken: () => undefined,
+  clearToken: () => null,
+  fireBaseApp: getFireApp(),
   session: null,
   isLoading: false,
 });
@@ -32,13 +36,9 @@ export function SessionProvider({ children }: PropsWithChildren) {
   return (
     <AuthContext.Provider
       value={{
-        signIn: async (email: string, password: string) => {
-          const res = await fireAuthSignIn(email, password);
-          setSession('xxx');
-        },
-        signOut: () => {
-          setSession(null);
-        },
+        storeToken: (accessToken: string) => { setSession(accessToken); },
+        clearToken: () => { setSession(null); },
+        fireBaseApp: useSession().fireBaseApp,
         session,
         isLoading,
       }}>
