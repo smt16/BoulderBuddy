@@ -1,3 +1,4 @@
+import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 export const CreateUserForm = (props: {
@@ -9,19 +10,19 @@ export const CreateUserForm = (props: {
   return (
     <View>
       <Text style={styles.inputLabel}>Username</Text>
-      <TextInput onChangeText={(change) => { props.userName(change) }} style={styles.textInput}/>
+      <TextInput onChangeText={(change) => { props.userName(change); }} style={styles.textInput}/>
       { props.error.username && <Text style={styles.validation}>Username is required</Text> }
 
       <Text style={styles.inputLabel}>Email</Text>
-      <TextInput onChangeText={(change) => { props.email(change) }} style={styles.textInput}/>
+      <TextInput onChangeText={(change) => { props.email(change); }} style={styles.textInput}/>
       { props.error.email && <Text style={styles.validation}>Email is required</Text> }
 
       <Text style={styles.inputLabel}>Password</Text>
-      <TextInput onChangeText={(change) => { props.password(change) }} style={styles.textInput}/>
+      <TextInput secureTextEntry={true} onChangeText={(change) => { props.password(change); }} style={styles.textInput}/>
       { props.error.password && <Text style={styles.validation}>Password is required</Text> }
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   inputLabel: {

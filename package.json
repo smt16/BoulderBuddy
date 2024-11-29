@@ -2,6 +2,7 @@
   "name": "b",
   "main": "expo-router/entry",
   "version": "1.0.0",
+  "node": true,
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
@@ -9,7 +10,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "jest --watchAll",
-    "lint": "expo lint"
+    "lint": "eslint --fix"
   },
   "jest": {
     "preset": "jest-expo"

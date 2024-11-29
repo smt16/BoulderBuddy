@@ -5,21 +5,21 @@ import { FirebaseApp } from 'firebase/app';
 import getFireApp from '@/firebase/firebase.app';
 
 const AuthContext = createContext<{
-  storeToken: (accessToken: string) => void,
+  storeToken:(accessToken: string) => void,
   clearToken: () => void,
   fireBaseApp: FirebaseApp
   session?: string | null,
   isLoading: boolean,
-}>({
-  storeToken: () => undefined,
-  clearToken: () => null,
-  fireBaseApp: getFireApp(),
-  session: null,
-  isLoading: false,
-});
+    }>({
+      storeToken: () => undefined,
+      clearToken: () => null,
+      fireBaseApp: getFireApp(),
+      session: null,
+      isLoading: false
+    });
 
 // This hook can be used to access the user info.
-export function useSession() {
+export function useSession () {
   const value = useContext(AuthContext);
   if (process.env.NODE_ENV !== 'production') {
     if (!value) {
@@ -30,7 +30,7 @@ export function useSession() {
   return value;
 }
 
-export function SessionProvider({ children }: PropsWithChildren) {
+export function SessionProvider ({ children }: PropsWithChildren) {
   const [[isLoading, session], setSession] = useStorageState('session');
 
   return (
@@ -40,7 +40,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
         clearToken: () => { setSession(null); },
         fireBaseApp: useSession().fireBaseApp,
         session,
-        isLoading,
+        isLoading
       }}>
       {children}
     </AuthContext.Provider>

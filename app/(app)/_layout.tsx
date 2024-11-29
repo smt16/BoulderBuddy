@@ -2,7 +2,7 @@ import { Text } from 'react-native';
 import { Redirect, Stack } from 'expo-router';
 import { useSession } from '@/context/context';
 
-export default function AppLayout() {
+export default function AppLayout () {
   const { session, isLoading } = useSession();
 
   // You can keep the splash screen open, or render a loading screen like we do here.

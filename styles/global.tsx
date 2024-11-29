@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   bg: {
@@ -14,10 +14,10 @@ export default StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   buttonLabel: {
     color: 'white',
-    fontSize: 24,
-  },
+    fontSize: 24
+  }
 });

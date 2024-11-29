@@ -1,3 +1,4 @@
+import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 export const SignInForm = (props: {
@@ -8,15 +9,15 @@ export const SignInForm = (props: {
   return (
     <View>
       <Text style={styles.inputLabel}>Email</Text>
-      <TextInput style={styles.textInput} onChangeText={(change) => { props.email(change) }} />
+      <TextInput style={styles.textInput} onChangeText={(change) => { props.email(change); }} />
       { props.error.email && <Text style={styles.validation}>Email is required</Text> }
 
       <Text style={styles.inputLabel}>Password</Text>
-      <TextInput style={styles.textInput} onChangeText={(change) => { props.password(change) }} />
+      <TextInput style={styles.textInput} secureTextEntry={true} onChangeText={(change) => { props.password(change); }} />
       { props.error.password && <Text style={styles.validation}>Password is required</Text> }
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   inputLabel: {
